@@ -5,6 +5,8 @@ import BootScreen from '@/components/BootScreen';
 import LoginScreen from '@/components/LoginScreen';
 import StartupAnimation from '@/components/StartupAnimation';
 import Desktop from '@/components/Desktop';
+import { NotificationProvider } from '@/components/NotificationSystem';
+import { AudioProvider } from '@/components/AudioManager';
 
 type AppState = 'boot' | 'login' | 'startup' | 'desktop';
 
@@ -35,7 +37,13 @@ export default function Home() {
       {appState === 'boot' && <BootScreen />}
       {appState === 'login' && <LoginScreen onLogin={handleLogin} />}
       {appState === 'startup' && <StartupAnimation />}
-      {appState === 'desktop' && <Desktop />}
+      {appState === 'desktop' && (
+        <AudioProvider>
+          <NotificationProvider>
+            <Desktop />
+          </NotificationProvider>
+        </AudioProvider>
+      )}
     </div>
   );
 }

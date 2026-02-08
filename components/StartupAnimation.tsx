@@ -4,16 +4,14 @@ import { useState, useEffect } from 'react';
 
 export default function StartupAnimation() {
   const [progress, setProgress] = useState(0);
-  const [loadingText, setLoadingText] = useState('Initializing GP-TWO system core...');
+  const [phase, setPhase] = useState(0);
 
-  const loadingMessages = [
-    'Initializing GP-TWO system core...',
-    'Loading android neural pathways...',
-    'Activating quantum processors...',
-    'Establishing secure connection...',
-    'Loading user profile data...',
-    'Initializing desktop environment...',
-    'System ready. Launching interface...',
+  const phases = [
+    'Initialisation du système...',
+    'Chargement des modules neural...',
+    'Synchronisation des processeurs...',
+    'Activation de l\'interface...',
+    'Bienvenue, GP-TWO'
   ];
 
   useEffect(() => {
@@ -23,168 +21,108 @@ export default function StartupAnimation() {
           clearInterval(interval);
           return 100;
         }
-        return prev + 2;
+        return prev + 1.5;
       });
-    }, 30);
+    }, 25);
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const messageIndex = Math.floor((progress / 100) * (loadingMessages.length - 1));
-    setLoadingText(loadingMessages[messageIndex]);
-  }, [progress, loadingMessages]);
+    const phaseIndex = Math.min(Math.floor((progress / 100) * phases.length), phases.length - 1);
+    setPhase(phaseIndex);
+  }, [progress, phases.length]);
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 flex items-center justify-center relative overflow-hidden">
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+    <div className="w-full h-full bg-[#0a0000] flex items-center justify-center relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(220,38,38,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(220,38,38,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      
+      {/* Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-500/10 rounded-full blur-[200px] animate-pulse" />
 
-      {/* Glow effects */}
-      <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse"></div>
-      <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-pulse"></div>
-
-      <div className="text-center relative z-10 max-w-xl w-full px-8">
-        {/* Logo */}
-        <div className="mb-16 relative">
-          <div className="w-40 h-40 mx-auto relative">
-            {/* Outer ring */}
-            <div className="absolute inset-0 border-4 border-cyan-400/20 rounded-full animate-spin-slow"></div>
-            {/* Middle ring */}
-            <div
-              className="absolute inset-4 border-4 border-cyan-300/30 rounded-full animate-spin-reverse"
-              style={{ animationDuration: '2s' }}
-            ></div>
-            {/* Inner glow */}
-            <div className="absolute inset-8 bg-gradient-to-br from-cyan-500/30 to-blue-600/30 rounded-full blur-md"></div>
-            {/* Inner circle */}
-            <div className="absolute inset-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-              <svg
-                className="w-16 h-16 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
-                />
-              </svg>
+      <div className="text-center relative z-10">
+        {/* Logo Cerberus */}
+        <div className="mb-12 relative inline-block">
+          {/* Outer rings */}
+          <div className="w-40 h-40 relative mx-auto">
+            <div className="absolute inset-0 border-2 border-red-400/20 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
+            <div className="absolute inset-4 border-2 border-rose-400/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
+            <div className="absolute inset-8 border border-rose-300/20 rounded-full animate-spin" style={{ animationDuration: '4s' }} />
+            
+            {/* Center logo - Cerberus */}
+            <div className="absolute inset-12 bg-gradient-to-br from-red-500/20 to-rose-500/20 rounded-full backdrop-blur-sm flex items-center justify-center">
+              <img src="/images/cerberus-logo.png" alt="Cerberus" className="w-14 h-14 object-contain" />
             </div>
+
+            {/* Orbiting dots */}
+            {[0, 1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="absolute w-2 h-2 bg-red-400 rounded-full"
+                style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: `rotate(${i * 90 + progress * 3.6}deg) translateX(70px) translateY(-50%)`,
+                  opacity: 0.6 + (i * 0.1),
+                }}
+              />
+            ))}
           </div>
         </div>
 
         {/* Brand */}
-        <div className="mb-12">
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 mb-3 tracking-wider">
-            MURKOFF SYSTEMS
-          </h1>
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-500/50"></div>
-            <p className="text-cyan-500/70 text-sm tracking-[0.3em] font-light">GP-TWO ANDROID OS</p>
-            <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-500/50"></div>
-          </div>
-          <p className="text-cyan-400/40 text-xs">Version 2026.1.0</p>
-        </div>
+        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-400 to-red-500 tracking-wider mb-2">
+          CERBERUS OS
+        </h1>
+        <p className="text-red-400/40 text-xs tracking-[0.4em] mb-12">PREPARING YOUR WORKSPACE</p>
 
-        {/* Loading section */}
-        <div className="w-full max-w-md mx-auto bg-black/20 backdrop-blur-sm border border-cyan-900/30 rounded-2xl p-6 shadow-2xl">
+        {/* Progress section */}
+        <div className="w-80 mx-auto">
           {/* Progress bar */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between text-xs text-cyan-400/70 mb-3">
-              <span>System Initialization</span>
-              <span className="font-mono">{progress}%</span>
-            </div>
-            <div className="h-2.5 bg-slate-900/50 rounded-full overflow-hidden border border-cyan-900/30">
-              <div
-                className="h-full bg-gradient-to-r from-cyan-500 via-blue-400 to-cyan-500 transition-all duration-300 ease-out relative overflow-hidden"
-                style={{ width: `${progress}%` }}
-              >
-                <div className="absolute inset-0 bg-white/20 animate-shimmer"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-              </div>
+          <div className="h-1 bg-slate-800 rounded-full overflow-hidden mb-4">
+            <div
+              className="h-full bg-gradient-to-r from-red-500 via-rose-400 to-red-500 transition-all duration-200 ease-out relative"
+              style={{ width: `${progress}%` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
             </div>
           </div>
 
-          {/* Loading text */}
-          <div className="flex items-center justify-center gap-3 text-cyan-400 text-sm">
+          {/* Phase text */}
+          <div className="flex items-center justify-center gap-2 text-red-400/70 text-sm">
             <div className="flex gap-1">
-              {[...Array(3)].map((_, i) => (
+              {[0, 1, 2].map((i) => (
                 <div
                   key={i}
-                  className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"
-                  style={{
-                    animationDelay: `${i * 0.15}s`,
-                    animationDuration: '0.6s',
-                  }}
+                  className="w-1.5 h-1.5 bg-red-400 rounded-full animate-bounce"
+                  style={{ animationDelay: `${i * 0.15}s`, animationDuration: '0.8s' }}
                 />
               ))}
             </div>
-            <p className="font-mono text-xs">{loadingText}</p>
-          </div>
-
-          {/* Status indicators */}
-          <div className="mt-6 pt-6 border-t border-cyan-900/20 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2 text-green-500/70">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Neural Link Active</span>
-            </div>
-            <div className="flex items-center gap-2 text-cyan-500/70">
-              <div className="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
-              <span>Secure Boot</span>
-            </div>
+            <span className="font-light">{phases[phase]}</span>
           </div>
         </div>
 
-        {/* Additional info */}
-        <div className="mt-8 text-center">
-          <p className="text-cyan-500/30 text-xs">
-            Murkoff Corporation • Advanced Robotics Division
-          </p>
+        {/* Status indicators */}
+        <div className="mt-12 flex items-center justify-center gap-6 text-xs">
+          <div className="flex items-center gap-2 text-emerald-400/60">
+            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
+            <span>Système sécurisé</span>
+          </div>
+          <div className="flex items-center gap-2 text-red-400/60">
+            <div className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" />
+            <span>Neural Link</span>
+          </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes spin-reverse {
-          from {
-            transform: rotate(360deg);
-          }
-          to {
-            transform: rotate(0deg);
-          }
-        }
-
         @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(200%); }
         }
-
-        .animate-spin-slow {
-          animation: spin-slow 4s linear infinite;
-        }
-
-        .animate-spin-reverse {
-          animation: spin-reverse 3s linear infinite;
-        }
-
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
+        .animate-shimmer { animation: shimmer 1.5s ease-in-out infinite; }
       `}</style>
     </div>
   );

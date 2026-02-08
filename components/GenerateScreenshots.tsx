@@ -10,14 +10,14 @@ export default function GenerateScreenshots() {
   const conversations = [
     {
       id: 1,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '9:41 AM',
       messages: [
         { text: "Tu as acheté le lait?", sent: false, time: '9:30 AM' },
         { text: "Non j'ai oublié", sent: true, time: '9:32 AM' },
         { text: "Sérieusement? C'était la seule chose!", sent: false, time: '9:33 AM' },
-        { text: "Je suis occupé Helene", sent: true, time: '9:35 AM' },
+        { text: "Je suis occupé █████████", sent: true, time: '9:35 AM' },
         { text: "Occupé à quoi exactement?", sent: false, time: '9:36 AM' },
         { text: "Mes recherches sont plus importantes que ton lait", sent: true, time: '9:38 AM' },
         { text: "Incroyable...", sent: false, time: '9:40 AM' },
@@ -25,7 +25,7 @@ export default function GenerateScreenshots() {
     },
     {
       id: 2,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '2:15 PM',
       messages: [
@@ -39,21 +39,21 @@ export default function GenerateScreenshots() {
     },
     {
       id: 3,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '4:30 PM',
       messages: [
         { text: "Pourquoi tu réponds pas au téléphone?", sent: false, time: '4:20 PM' },
         { text: "J'étais en réunion", sent: true, time: '4:25 PM' },
         { text: "Pendant 3 heures?", sent: false, time: '4:26 PM' },
-        { text: "Oui Helene, c'est ce qu'on appelle le travail", sent: true, time: '4:28 PM' },
+        { text: "Oui █████████, c'est ce qu'on appelle le travail", sent: true, time: '4:28 PM' },
         { text: "Ton ton est vraiment désagréable", sent: false, time: '4:29 PM' },
         { text: "Et toi tu es épuisante", sent: true, time: '4:30 PM' },
       ],
     },
     {
       id: 4,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '6:45 PM',
       messages: [
@@ -67,7 +67,7 @@ export default function GenerateScreenshots() {
     },
     {
       id: 5,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '8:20 PM',
       messages: [
@@ -81,7 +81,7 @@ export default function GenerateScreenshots() {
     },
     {
       id: 6,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '9:05 PM',
       messages: [
@@ -94,7 +94,7 @@ export default function GenerateScreenshots() {
     },
     {
       id: 7,
-      contact: 'Helene Bertram',
+      contact: '█████████ ███████',
       date: 'Thursday, July 5, 2012',
       time: '10:30 PM',
       messages: [
@@ -103,7 +103,7 @@ export default function GenerateScreenshots() {
         { text: "Comment ça?", sent: false, time: '10:19 PM' },
         { text: "C'est moi qui ai la garde. Point final.", sent: true, time: '10:20 PM' },
         { text: "On est encore mariés Harry", sent: false, time: '10:22 PM' },
-        { text: "Tu n'es pas une bonne mère Helene", sent: true, time: '10:24 PM' },
+        { text: "Tu n'es pas une bonne mère █████████", sent: true, time: '10:24 PM' },
         { text: "Comment oses-tu dire ça?!", sent: false, time: '10:25 PM' },
         { text: "Tu sers à rien. Tu passes ton temps chez le coiffeur pendant que je travaille", sent: true, time: '10:26 PM' },
         { text: "C'est faux!", sent: false, time: '10:27 PM' },
