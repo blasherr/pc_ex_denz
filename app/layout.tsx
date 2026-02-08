@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CERBERUS OS",
   description: "CERBERUS OS - System Recovery Interface",
+  other: {
+    'permissions-policy': 'fullscreen=*',
+  },
 };
 
 export default function RootLayout({
