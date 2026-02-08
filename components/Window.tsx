@@ -133,7 +133,7 @@ export default function Window({
   }, [isInteracting, handleMouseMove, handleMouseUp]);
 
   const windowStyle = isMaximized
-    ? { top: 0, left: 0, width: '100vw', height: 'calc(100vh - 48px)' }
+    ? { top: 0, left: 0, width: '100%', height: 'calc(100% - 48px)' }
     : { top: position.y, left: position.x, width: size.width, height: size.height };
 
   return (

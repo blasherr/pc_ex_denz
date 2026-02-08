@@ -33,7 +33,7 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-black">
+    <div className="w-full h-full overflow-hidden bg-black">
       {appState === 'boot' && <BootScreen />}
       {appState === 'login' && <LoginScreen onLogin={handleLogin} />}
       {appState === 'startup' && <StartupAnimation />}

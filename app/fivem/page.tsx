@@ -99,11 +99,11 @@ export default function FiveMPage() {
 
   if (!visible) {
     // Transparent background when hidden - NUI can click through
-    return <div className="w-screen h-screen" />;
+    return <div className="w-full h-full" />;
   }
 
   return (
-    <div className="w-screen h-screen overflow-hidden bg-black">
+    <div className="w-full h-full overflow-hidden bg-black">
       {appState === 'boot' && <BootScreen />}
       {appState === 'login' && <LoginScreen onLogin={handleLogin} />}
       {appState === 'startup' && <StartupAnimation />}
